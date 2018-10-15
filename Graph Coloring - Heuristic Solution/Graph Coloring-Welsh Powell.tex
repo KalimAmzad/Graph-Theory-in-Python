@@ -1,0 +1,180 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{lipsum}
+\newcommand*{\mybox}[2]{\colorbox{#1!30}{\parbox{.98\linewidth}{#2}}}
+%graphics package
+\usepackage{graphicx} %to import images
+\usepackage{float}%to control of the float positions
+
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[colorinlistoftodos]{todonotes}
+
+%programming code package
+\usepackage{listings}
+\usepackage{color}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
+
+\begin{document}
+\begin{titlepage}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+
+\center % Center everything on the page
+ 
+%----------------------------------------------------------------------------------------
+%   HEADING SECTIONS
+%----------------------------------------------------------------------------------------
+
+\textsc{\LARGE International Islamic University Chittagong}\\[1.5cm] % Name of your university/college
+%\textsc{\Large Major Heading}\\[0.5cm] % Major heading such as course name
+%\textsc{\large Minor Heading}\\[0.5cm] % Minor heading such as course title
+%----------------------------------------------------------------------------------------
+%   TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\HRule \\[0.4cm]
+{ \huge \bfseries Graph Coloring: A Heuristic Solution}\\[0.4cm] % Title of your document
+\HRule \\[1.5cm]
+ 
+%----------------------------------------------------------------------------------------
+%   AUTHOR SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+\emph{Submitted By:}\\
+Md. Kalim Amzad Chy\\ % Your name
+ID: C151113\\
+7CM
+\end{flushleft}
+\end{minipage}
+~
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{Sbmitted To:} \\
+Dr. Kazi Ashrafuzzaman % Supervisor's Name
+Associate Professor, 
+Dept. of CSE., CU
+\end{flushright}
+\end{minipage}\\[2cm]
+
+% If you don't want a supervisor, uncomment the two lines below and remove the section above
+%\Large \emph{Author:}\\
+%John \textsc{Smith}\\[3cm] % Your name
+
+%----------------------------------------------------------------------------------------
+%   DATE SECTION
+%----------------------------------------------------------------------------------------
+
+%{\large \today}\\[2cm] % Date, change the \today to a set date if you want to be precise
+
+%----------------------------------------------------------------------------------------
+%   LOGO SECTION
+%----------------------------------------------------------------------------------------
+\includegraphics[height=1.5in]{C:/Users/Parents/Desktop/Latex/logo.png}
+%\includegraphics{logo.png}\\[1cm] % Include a department/university logo - this will require the graphicx package
+ 
+%----------------------------------------------------------------------------------------
+
+\vfill % Fill the rest of the page with whitespace
+
+\end{titlepage}
+
+\newpage
+\section{Introduction}
+In graph theory, graph coloring is a special case of graph labeling; it is an assignment of labels traditionally called "colors" to elements of a graph subject to certain constraints. In its simplest form, it is a way of coloring the vertices of a graph such that no two adjacent vertices share the same color; this is called a vertex coloring. Similarly, an edge coloring assigns a color to each edge so that no two adjacent edges share the same color, and a face coloring of a planar graph assigns a color to each face or region so that no two faces that share a boundary have the same color.
+
+The greedy algorithm considers the vertices in a specific order $ v_{1},...., v_{n}$ and assigns to $v_{i}$ the smallest available color not used by $v_{i}$’s neighbours among $v_{1},...., v_{i-1} $ adding a fresh color if needed. The quality of the resulting coloring depends on the chosen ordering. There exists an ordering that leads to a greedy coloring with the optimal number of $X(G)$ colors. On the other hand, greedy colorings can be arbitrarily bad; for example, the crown graph on $n$ vertices can be 2-colored, but has an ordering that leads to a greedy coloring with $n/2$ colors. If the vertices are ordered according to their degrees, the resulting greedy coloring uses at most $max_i\ min\{d(x_i)+1,i\}$ colors, at most one more than the graph’s maximum degree.
+\newpage
+\section{Welsh-Powell Algorithm}
+In 1967 Welsh and Powell introduced in an upper bound to the chromatic number of a graph . It provides a greedy algorithm that runs on a static graph.
+
+Welsh Powell is used to implement graph labeling; it is an assignment of labels traditionally called "colors" to elements of a graph subject to certain constraints.
+
+The vertices are ordered according to their degrees, the resulting greedy coloring uses at most $max_i\ min\{d(x_i)+1,i\}$ colors, at most one more than the graph’s maximum degree. This heuristic is called the Welsh–Powell algorithm.
+\subsection{Proof and Coloring Complexity}
+The degree of a vertex $A_i$ of the graph $G$ is the number of edges having $A_i$ as an endpoint, and we will denote  it by $d_i$. Without loss of generality we assume that 
+\begin{equation}
+d_1 \geq d_2 \geq ...\geq d_n
+\end{equation}
+It is easy to show that if $k(G)$ denotes the chromatic number of $G$ then 
+\begin{equation}
+k(G) \leq d_1 + 1
+\end{equation}
+and provided G contains no $d_1$-simplices, then from (2) we know 
+\begin{equation}
+k(G) \leq d_1
+\end{equation}
+
+G may  always be coloured in at most $\alpha(G)$ colours where 
+\begin{equation}
+k(G) \leq \alpha(G) \leq max_i\ min\{d(x_i)+1,i\}
+\end{equation}
+\subsubsection{Theorem 1}
+If $G$ is a $k-$critical graph, then
+\begin{equation*}
+\delta(G) \geq k-1
+\end{equation*}
+\textit{Proof:}
+Let $ v $ be a vertex of $ G $ so that $d(v)<k-1$. Since $G$ is $k$- critical, the subgraph $G-v$
+has a $(k-1)$ -colouring. As $ v $ has at most $k-2$ neighbours, these neighbours use at
+most $k-2$ colours in this $(k-1)$ colouring of $G-v$ . Now, colour $ v $ with the unused
+colour and this gives a $(k-1)$ colouring of $ G $. This contradicts the given assumption
+that $\chi(G) = k$. Hence every vertex $ v $ has degree at least $k-1$
+
+\subsubsection{Theorem 2}
+Let $G$ be a graph and $k = max(\delta(G\prime):G\prime$ is a subgraph of $G$. Then $\chi(G) = k-1$\\
+
+\textit{Proof:}
+Let $H$ be a $k$-minimal subgraph of $G$. Then $H$ is a subgraph of $G$ and therefore $\delta(H) \leq k$. Using Theorem 1, we have,$\delta(H)\geq\chi(H)-1 = \chi(G)-1$. Thus, $\chi(G) \leq \delta(H)+1 = k+1$.
+\subsubsection{Theorem 3}
+Let $G$ be graph with degree sequence such that $d_1\geq d_2\geq ... \geq d_n.$ Then, $\chi(G)\leq max \{min \{ d_i+1,i\}\}$\\
+
+\textit{Proof:}
+Let $G$ be $k$-chromatic. Then, by Theorem 2, $G$ has at least $k$ vertices of degree at least $k-1$. Therefore, $d_k\geq k-1$ and $max \{min \{ d_i+1,i\}\} \geq min\{k,d_k+1=k=\chi(G)\}$.
+\subsubsection{Upper bound for chromatic number}
+For any graph $G$, $\chi(G) \leq \Delta(G)+1$.\\
+
+\textit{Proof:}
+Let $G$ be any graph with $n$ vertices. To prove the result, we induct on $n$. For $n=1, G=K_1$ and $\chi(G) = 1$  and $\Delta(G) = 0$. Therefore the result is true for $n = 1$.
+
+Assume that the result is true for all graphs with $n-1$ vertices and therefore by induction hypothesis, $\chi(G) \leq \Delta(G-v)+1$. This shows that $G-v$ can be coloured by using $\Delta(G-v) +1$ colours. Since $\Delta(G)$ is the maximum degree of a vertex in $G$, vertex $V$ has at most $\Delta(G)$ neighbours in $G$. Thus these neighbours use up at most $\Delta(G)$ colours in the colouring of $G-v$. If $\Delta(G) = \Delta(G-v),$ then there is at least one colour not used by $v'$s neighbours and that can be used to colour $v$ giving a $\Delta(G)+1$ colouring for $G$.
+
+In case $\Delta(G)=\Delta (G-v),$ then $\Delta(G-v) < \Delta(G)$. Therefore, using a new colour for $v$,
+we have a $\Delta(G-v)+2$ colouring of $G$ and clearly, $\Delta(G-v) +2 \leq \Delta(G) +1$. Hence in both cases, it follows that $\chi(G) \leq \Delta(G)+1$.
+\newpage
+\subsection{Algorithm}
+
+\mybox{gray}{
+\begin{enumerate}
+\item Find the degree of each vertex . 
+\item List the vertices in order of descending valence i.e.valence degree $(v(i)) \geq degree (v(i+1)).$
+\item Colour the first vertex in the list. 
+\item Go down the sorted list and color every vertex not connected to the colored  vertices above the same color then cross  out all colored vertices in the list.
+\item Repeat the process on the uncolored vertices with a new color-always working in descending order of degree until all in descending order of degree until all vertices are colored.
+\end{enumerate}
+}
+\par
+\subsection{Example}
+\begin{figure}[H]
+ 	\centering
+ 	\includegraphics[height=2.5in]{C:/Users/Parents/Desktop/Latex/given_graph.png}
+ 	\caption[optional caption]{Given Graph}
+ 	\label{fig:given_graph}
+ \end{figure}
+ 
+ \begin{figure}[H]
+ 	\centering
+ 	\includegraphics[height=2.5in]{C:/Users/Parents/Desktop/Latex/solved_graph.png}
+ 	\caption[optional caption]{Colored Graph}
+ 	\label{fig:colored_graph}
+ \end{figure}
+ 
+ \subsection{Time Complexity}
+ We iterate through the vertex list. For every vertex we iterate through the adjacent vretices. So, if no of the vertex is $V$, time complexity of welsh-powell algorithm is $O(V^2)$
+\end{document}
